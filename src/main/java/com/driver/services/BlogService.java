@@ -19,15 +19,15 @@ public class BlogService {
     BlogRepository blogRepository1;
 
     @Autowired
-    ImageRepository imageRepository;
+    ImageService imageService;
 
     @Autowired
     UserRepository userRepository1;
 
     public List<Blog> showBlogs(){
         //find all blogs
-        List<Blog> AllBlogs=blogRepository1.findAll();
-        return AllBlogs;
+        return blogRepository1.findAll();
+
 
     }
 
@@ -60,7 +60,7 @@ public class BlogService {
         List<Image> AllImages=blog.getImageList();
         AllImages.add(image);
         blog.setImageList(AllImages);
-        imageRepository.save(image);
+        //imageRepository.save(image);
         blogRepository1.save(blog);
         //add an image to the blog after creating it
     }

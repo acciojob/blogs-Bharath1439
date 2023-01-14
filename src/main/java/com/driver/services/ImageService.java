@@ -38,19 +38,24 @@ public class ImageService {
         return image;
 
     }
-    public void deleteByID(int id){
-        if(imageRepository2.findById(id)!=null)
-             imageRepository2.deleteById(id);
-    }
+
 
     public void deleteImage(Image image){
+        Blog blog = image.getBlog();
 
+        List<Image> list = blog.getImageList();
+
+        list.remove(image);
+
+        blog.setImageList(list);
+
+        imageRepository2.delete(image);
 
     }
 
     public Image findById(int id) {
        Image image=imageRepository2.findById(id).get();
-        return image;
+           return image;
 
     }
 

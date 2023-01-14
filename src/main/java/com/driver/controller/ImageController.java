@@ -2,6 +2,7 @@ package com.driver.controller;
 
 import com.driver.models.Blog;
 import com.driver.models.Image;
+import com.driver.repositories.ImageRepository;
 import com.driver.services.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,9 @@ public class ImageController {
 
     @Autowired
     ImageService imageService;
+
+    @Autowired
+    ImageRepository imageRepository;
 
     @PostMapping("/create")
     public ResponseEntity<Image> createAndReturn(@RequestBody Blog blog,
@@ -37,7 +41,8 @@ public class ImageController {
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteImage(@PathVariable int id) {
 
-        imageService.deleteByID(id);
+        Image newimage = imageService.findById(id);
+        imageService.deleteImage(newimage);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
