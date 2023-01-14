@@ -54,6 +54,6 @@ public class ImageService {
         //Find the number of images of given dimensions that can fit in a screen having `screenDimensions`
         //In case the image is null, return 0
 
-
+     return 0;
     }
 }
