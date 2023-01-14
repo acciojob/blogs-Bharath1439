@@ -1,56 +1,55 @@
 package com.driver.models;
 
-
 import javax.persistence.*;
+
 
 @Entity
 @Table
 public class Image {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
-    public String getDescription() {
-        return Description;
-    }
-
+    private String description;
+    @Column(nullable = false)
+    private String dimensions;
     public Image() {
     }
-
-    public void setDescription(String description) {
-        Description = description;
-    }
-
     public Image(String description, String dimensions) {
-        Description = description;
-        Dimensions = dimensions;
+        this.description = description;
+        this.dimensions = dimensions;
     }
+    public int getId() {
 
+        return id;
+    }
+    public void setId(int id) {
+
+        this.id = id;
+    }
+    public String getDescription() {
+
+        return description;
+    }
+    public void setDescription(String description) {
+        this.description = description;
+    }
     public String getDimensions() {
-        return Dimensions;
-    }
 
+        return dimensions;
+    }
     public void setDimensions(String dimensions) {
-        Dimensions = dimensions;
+
+        this.dimensions = dimensions;
     }
-
-    public Blog getBlog() {
-        return blog;
-    }
-
-    public void setBlog(Blog blog) {
-        this.blog = blog;
-    }
-
-    @Column
-    private String Description;
-
-    @Column(nullable = false)
-    private String Dimensions;
-
     @ManyToOne
     @JoinColumn
     private Blog blog;
+    public Blog getBlog() {
 
+        return blog;
+    }
+    public void setBlog(Blog blog) {
+
+        this.blog = blog;
+    }
 }
